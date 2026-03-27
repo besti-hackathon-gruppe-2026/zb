@@ -17,11 +17,19 @@ services:
 
   mitmproxy:
     build: mitmproxy-container
-    #command: ["sleep", "1000"]
     ports:
       - "8080:8080"
     networks:
       - internal
+
+  dns:
+    image: coredns/coredns
+    command: -conf /etc/coredns/Corefile
+    volumes:
+      - "./dns/Corefile:/etc/coredns/Corefile"
+    ports:
+      - "53:53/udp"
+
 
 networks:
   internal:
