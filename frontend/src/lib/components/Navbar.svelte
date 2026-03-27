@@ -9,18 +9,20 @@
 <nav>
 	<div></div>
 	<ul class="navbar-elements">
-		<a href="/app/home" style="font-weight: {pageId === 'home' ? 'bold' : 'normal'};"> Home </a>
-		<a href="/app/filter" style="font-weight: {pageId === 'filter' ? 'bold' : 'normal'};">
-			Filter
-		</a>
-		<a href="/app/classrooms" style="font-weight: {pageId === 'classroom' ? 'bold' : 'normal'};">
-			Classrooms
-		</a>
-		<a href="/app/agenda" style="font-weight: {pageId === 'classroom' ? 'bold' : 'normal'};">
-			Agenda
-		</a>
+		<li>
+			<a href="/app/home" class:active={pageId === 'home'}> Home </a>
+		</li>
+		<li>
+			<a href="/app/filter" class:active={pageId === 'filter'}> Filter </a>
+		</li>
+		<li>
+			<a href="/app/classrooms" class:active={pageId === 'classrooms'}> Classrooms </a>
+		</li>
+		<li>
+			<a href="/app/agenda" class:active={pageId === 'agenda'}> Agenda </a>
+		</li>
 	</ul>
-	<div class="logout-icon"><LogOut /></div>
+	<div><LogOut /></div>
 </nav>
 
 <style>
@@ -39,8 +41,22 @@
 		color: black;
 	}
 
+	a {
+		text-decoration: none;
+		color: black;
+	}
+
 	a:hover {
 		opacity: 0.6;
+	}
+
+	a.active {
+		font-weight: bold;
+		opacity: 1;
+	}
+
+	a.active:hover {
+		opacity: 1;
 	}
 
 	.navbar-elements {
