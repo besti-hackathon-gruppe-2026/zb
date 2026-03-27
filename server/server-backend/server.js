@@ -5,6 +5,8 @@ import {readFile} from "node:fs/promises"
 const app = express()
 const port = 8000
 
+app.use(express.json())
+
 /* DATABASE */
 async function makeConnection(multipleStatements) {
     return await mysql.createConnection({
