@@ -15,6 +15,8 @@ const generateToken = async (userId) => {
 auth.post("/login", async (req, res) => {
     try {
         const { username, password } = req.body;
+
+
         if (!username || !password) {
             return res.status(400).json({ status: 400, message: "Username and password required." });
         }
