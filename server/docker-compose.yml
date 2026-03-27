@@ -1,17 +1,30 @@
 services:
   mysql:
-    image: mysql:8.1           # Latest MySQL 8.x image
+    image: mysql
     container_name: mysql_db
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: IeP8aiji   # Root password
-      MYSQL_DATABASE: mydatabase          # Optional: default database
-      MYSQL_USER: myuser                  # Optional: non-root user
-      MYSQL_PASSWORD: IeP8aiji      # Optional: password for non-root user
+      MYSQL_ROOT_PASSWORD: IeP8aiji
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: IeP8aiji
     ports:
-      - "3306:3306"      # Expose MySQL port to host
+      - "3306:3306" # for development
     volumes:
-      - mysql_data:/var/lib/mysql  # Persistent storage
+      - mysql_data:/var/lib/mysql
+    networks:
+      - internal
+
+  mitmproxy:
+    build: mitmproxy-container
+    #command: ["sleep", "1000"]
+    ports:
+      - "8080:8080"
+    networks:
+      - internal
+
+networks:
+  internal:
 
 volumes:
   mysql_data:
