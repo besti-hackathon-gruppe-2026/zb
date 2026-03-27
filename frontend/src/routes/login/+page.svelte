@@ -1,43 +1,54 @@
-<div class="root">
-	<div class="box">
-    <h1>Login</h1>
-		<form action="/action_page.php" method="get">
-			<label> Username:</label>
-			<input type="text" name="vehicle1" value="" />
-			<label> Password:</label>
-			<input type="text" name="vehicle2" value="" />
+<main class="page">
+	<section class="login-card container">
+		<h1 class="title">Login</h1>
+
+		<form method="POST" action="?/login">
+			<div class="form-field">
+				<label for="email">Email</label>
+				<input id="email" name="email" type="text" required autocomplete="email" />
+			</div>
+
+			<div class="form-field">
+				<label for="password">Password</label>
+				<input
+					id="password"
+					name="password"
+					type="password"
+					required
+					autocomplete="current-password"
+				/>
+			</div>
+
+			<button type="submit">Login</button>
 		</form>
-	</div>
-</div>
+	</section>
+</main>
 
 <style>
-	.root {
-		height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+	.title {
+		text-align: center;
 	}
 
-  .box {
-    background-color: pink;
-    padding: 15px;
-    padding-left: 35px;
-    padding-right: 35px;
-    display: flex;
-    gap: 12px;
-    flex-direction: column;
-  }
+	.login-card {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
 
-  form {
-    display: flex;
-    gap: 8px;
-    flex-direction: column;
-  }
+		max-width: 420px;
 
-  h1 {
-    font-size: xx-large;
-  }
-  label {
-    font-size: large;
-  }
+		padding: 2.5rem;
+		gap: 1.5rem;
+	}
+
+	.form-field {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
 </style>
