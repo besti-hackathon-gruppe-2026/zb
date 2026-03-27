@@ -40,6 +40,12 @@ class BlockerAddon :
 
                     self.whitelist_urls = whitelist_urls_tmp
                     self.whitelist_ips = whitelist_ips_tmp
+                    
+    async def clear_cache(self) :
+        while True :
+            await asyncio.sleep(1800) # 30min
+            self.ip_cache.clear()
+            
 
     def resolve_ip(self, host) :
         if host in self.ip_cache :
@@ -49,10 +55,10 @@ class BlockerAddon :
         self.ip_cache[host] = ip
         return ip
 
-
     def load(self, loader: addonmanager.Loader) :
         self.refresh_whitelist()
-        asyncio.get_event_loop().create_task(self.refresh_whitelist())
+        asyncio.create_task(self.refresh_whitelist())
+        asyncio.create_task(self.clear_cache())
 
     def request(self, flow: http.HTTPFlow):
         if self.whitelist_urls :

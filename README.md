@@ -1,37 +1,16 @@
-# WebUI
-- Login
-	- Per teacher
-- Time table
-	- Custom timespan
-	- Select whitelist templates
-	- Classroom selection
-	- Extra whitelist
-- Templates management
-	- URL whitelist
-	- IP Whitelist
-	- Custom naming
-# Backend
-- Proxy
-	- URL whitelist
-	- IP whitelist
-- Database
-	- Classrooms
-		- Id
-		- Name
-	- Filters
-		- Id
-		- Classroom id
-		- URL (nullable)
-		- IP (nullable)
-	- Templates
-		- Id
-		- Name
-	- Template filters
-		- Id
-		- Template id
-		- URL (nullable)
-		- IP (nullable)
-	- Teachers
-		- Id
-		- Username
-		- Password
+# NetSwitch
+
+## Setup
+
+
+## Usage
+
+
+## How it works
+![map](./img/map.png)
+
+- Every classroom has a proxy on the server through which the clients (Laptops) are routing all traffic.
+- The proxy forwards whitelisted URLs or IPs to the router, which are fetched from the Database. All other traffic is blocked.
+- Using the WebUI teachers can whitelist URLs and IPs in the database.
+- The router wont allow any traffic except when it is coming form one of the proxies.
+

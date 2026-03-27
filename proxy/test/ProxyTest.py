@@ -35,7 +35,7 @@ def add_filter() :
             cur.execute("INSERT INTO filters (classroom_id, ip) VALUES (1, '149.126.4.22');") # yurix.ch
         cnx.commit()
 
-    sleep(3)
+    sleep(5)
     yield
 
 
