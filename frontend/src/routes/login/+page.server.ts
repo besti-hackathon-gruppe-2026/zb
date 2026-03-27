@@ -1,13 +1,40 @@
+import { redirect } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
+
 import type { Actions } from './$types';
 
 export const actions = {
-	login: async ({ cookies, request }) => {
+	login: async ({ cookies, request, fetch }) => {
 		const data = await request.formData();
-		const email = data.get('email');
+		const username = data.get('username');
 		const password = data.get('password');
 
-		console.log(email, password)
+		if (!username || !password) {
+			return fail(400, { message: 'Username and password are required.' });
+		}
 
-		return { success: true };
+		const body = { username, password };
+
+		const req = await fetch('http://localhost:8001/auth/login', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(body)
+		});
+
+		if (!req.ok) {
+			return fail(req.status, { message: 'Username or password incorrect.' });
+		}
+
+		const res = await req.json();
+
+		if (res.status !== 200) {
+			return fail(res.status, { message: res.message });
+		}
+
+		const { token } = res;
+
+		cookies.set('auth', token, { path: '/login' });
+
+		return redirect(302, '/app/home');
 	}
 } satisfies Actions;

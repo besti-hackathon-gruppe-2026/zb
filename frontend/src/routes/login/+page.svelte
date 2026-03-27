@@ -1,11 +1,18 @@
+<script lang="ts">
+	import type { PageProps } from './$types';
+	import { page } from '$app/state';
+
+	let { data, form }: PageProps = $props();
+</script>
+
 <main class="page">
 	<section class="login-card container">
 		<h1 class="title">Login</h1>
 
 		<form method="POST" action="?/login">
 			<div class="form-field">
-				<label for="email">Email</label>
-				<input id="email" name="email" type="text" required autocomplete="email" />
+				<label for="username">Username</label>
+				<input id="username" name="username" type="text" required autocomplete="username" />
 			</div>
 
 			<div class="form-field">
@@ -18,6 +25,10 @@
 					autocomplete="current-password"
 				/>
 			</div>
+
+			{#if page.form?.message}
+				<p class="error">{page.form.message}</p>
+			{/if}
 
 			<button type="submit">Login</button>
 		</form>
@@ -44,6 +55,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
+	}
+
+	.error {
+		color: red;
+		text-align: center;
 	}
 
 	form {
