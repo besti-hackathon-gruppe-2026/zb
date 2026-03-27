@@ -33,7 +33,12 @@
 		padding: 16px;
 
 		width: 100%;
-		border: 1px solid #ddd;
+		border-bottom: 1px solid #ddd;
+
+		position: sticky;
+		top: 0;
+		background: white;
+		z-index: 10;
 	}
 
 	a {
