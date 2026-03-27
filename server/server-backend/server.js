@@ -8,6 +8,7 @@ config()
 
 import routes from "./routes.js";
 import auth from "./auth.js";
+import cors from "cors"
 
 const app = express()
 const port = process.env.PORT || 8000
@@ -15,6 +16,9 @@ const port = process.env.PORT || 8000
 
 
 app.use(express.json())
+app.use(cors({
+    origin: !!process.env.NOCORS
+}))
 
 /* DATABASE */
 async function makeConnection(multipleStatements) {
