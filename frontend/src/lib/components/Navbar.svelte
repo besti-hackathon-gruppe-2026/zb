@@ -1,50 +1,55 @@
-<script>
+<script lang="ts">
+	import { LogOut } from '@lucide/svelte';
 
-	import { LogOut, Users, SquarePen, CalendarDays, House } from "@lucide/svelte";
+	import { page } from '$app/state';
 
+	const pageId = $derived(page.url.pathname.split('/')[2]);
 </script>
 
-
-
-<nav class="taskbar">
-  <ul class="taskbar-list">
-    <li><a href="home"><p>Home</p></a></li>
-    <li><p>Stundenplan</p></li>
-    <li><p>Filter</p></li>
-    <li><p>Klassenzimmer</p></li>
-  </ul>
-  <div class="logout-icon"><LogOut/></div>
-  
+<nav>
+	<div></div>
+	<ul class="navbar-elements">
+		<a href="/app/home" style="font-weight: {pageId === 'home' ? 'bold' : 'normal'};"> Home </a>
+		<a href="/app/filter" style="font-weight: {pageId === 'filter' ? 'bold' : 'normal'};">
+			Filter
+		</a>
+		<a href="/app/classrooms" style="font-weight: {pageId === 'classroom' ? 'bold' : 'normal'};">
+			Classrooms
+		</a>
+		<a href="/app/agenda" style="font-weight: {pageId === 'classroom' ? 'bold' : 'normal'};">
+			Agenda
+		</a>
+	</ul>
+	<div class="logout-icon"><LogOut /></div>
 </nav>
 
 <style>
+	nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 16px;
 
-.taskbar {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  border-bottom: 2px solid black;
-  padding: 1rem 2rem;
-  box-sizing: border-box;
-}
+		width: 100%;
+		border: 1px solid #ddd;
+	}
 
-.taskbar-list {
-  display: flex;
-  gap: 5rem;
-  list-style-type: none;
-  align-items: center;
-  margin: 0;
-  flex: 1;
-}
+	a {
+		text-decoration: none;
+		color: black;
+	}
 
-.logout-icon {
-  margin-left: auto; 
-  flex-shrink: 0;
-}
+	a:hover {
+		opacity: 0.6;
+	}
 
-.taskbar-list li:hover p, .logout-icon:hover {
-  color: grey;
-  cursor: pointer;
-}
+	.navbar-elements {
+		display: flex;
+		justify-content: space-around;
 
- </style> 
+		max-width: 28rem;
+		width: 100%;
+		text-decoration: none;
+		list-style: none;
+	}
+</style>
