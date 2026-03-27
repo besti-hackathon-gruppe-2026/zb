@@ -1,1 +1,37 @@
-# zb zb zb tfzff
+# WebUI
+- Login
+	- Per teacher
+- Time table
+	- Custom timespan
+	- Select whitelist templates
+	- Classroom selection
+	- Extra whitelist
+- Templates management
+	- URL whitelist
+	- IP Whitelist
+	- Custom naming
+# Backend
+- Proxy
+	- URL whitelist
+	- IP whitelist
+- Database
+	- Classrooms
+		- Id
+		- Name
+	- Filters
+		- Id
+		- Classroom id
+		- URL (nullable)
+		- IP (nullable)
+	- Templates
+		- Id
+		- Name
+	- Template filters
+		- Id
+		- Template id
+		- URL (nullable)
+		- IP (nullable)
+	- Teachers
+		- Id
+		- Username
+		- Password
