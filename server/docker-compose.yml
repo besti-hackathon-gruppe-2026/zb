@@ -4,10 +4,10 @@ services:
     container_name: mysql_db
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: IeP8aiji
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: mydatabase
       MYSQL_USER: myuser
-      MYSQL_PASSWORD: IeP8aiji
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3306:3306" # for development
     volumes:
@@ -24,7 +24,7 @@ services:
       MYSQL_HOST: mysql_db
       MYSQL_PORT: 3306
       MYSQL_USER: myuser
-      MYSQL_PASSWORD: IeP8aiji
+      MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: mydatabase
     networks:
       - internal
@@ -35,7 +35,7 @@ services:
     volumes:
       - "./dns/Corefile:/etc/coredns/Corefile"
     ports:
-      - "53:53/udp"
+      - "5223:53/udp"
 
   backend:
     build: server-backend
@@ -47,7 +47,7 @@ services:
       CLASSROOM_ID: 1
       DB_HOST: mysql_db
       DB_USER: myuser
-      DB_PASSWORD: IeP8aiji
+      DB_PASSWORD: ${DB_PASSWORD}
       DB_DATABASE: mydatabase
 
 networks:
