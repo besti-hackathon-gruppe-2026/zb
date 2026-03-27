@@ -1,9 +1,10 @@
 import express from "express"
 import mysql from 'mysql2/promise';
 import {readFile} from "node:fs/promises"
+import routes from "./routes.js";
 
 const app = express()
-const port = 8000
+const port = process.env.PORT || 8000
 
 app.use(express.json())
 
@@ -22,13 +23,17 @@ async function initializeDatabase() {
 
     const connection = await makeConnection(true)
     await connection.query(sql)
+    console.log("DB schema created")
 }
 await initializeDatabase()
 const connection = await makeConnection(false)
 app.use((req, res, next) => {
     req.db = connection
+    next()
 })
 /* DATABASE */
+
+app.use("/api", routes)
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
