@@ -19,6 +19,13 @@ services:
     build: mitmproxy-container
     ports:
       - "8080:8080"
+    environment:
+      CLASSROOM_ID: 1
+      MYSQL_HOST: mysql_db
+      MYSQL_PORT: 3306
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: IeP8aiji
+      MYSQL_DATABASE: mydatabase
     networks:
       - internal
 
