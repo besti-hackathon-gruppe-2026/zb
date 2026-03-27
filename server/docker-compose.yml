@@ -1,0 +1,17 @@
+services:
+  mysql:
+    image: mysql:8.1           # Latest MySQL 8.x image
+    container_name: mysql_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: IeP8aiji   # Root password
+      MYSQL_DATABASE: mydatabase          # Optional: default database
+      MYSQL_USER: myuser                  # Optional: non-root user
+      MYSQL_PASSWORD: IeP8aiji      # Optional: password for non-root user
+    ports:
+      - "3306:3306"      # Expose MySQL port to host
+    volumes:
+      - mysql_data:/var/lib/mysql  # Persistent storage
+
+volumes:
+  mysql_data:
