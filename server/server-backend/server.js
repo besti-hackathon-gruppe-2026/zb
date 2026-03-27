@@ -11,7 +11,7 @@ async function makeConnection(multipleStatements) {
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'myuser',
     database: process.env.DB_DATABASE || 'mydatabase',
-    password: process.env.DB_HOST || 'IeP8aiji',
+    password: process.env.DB_PASSWORD,
     multipleStatements: multipleStatements
 });
 }
