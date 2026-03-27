@@ -29,9 +29,6 @@ export const actions = {
 			})
 		})
 
-		console.log(classroomId)
-
 		const resp = await res.json()
-		console.log(resp)
 	}
 }

@@ -1,13 +1,5 @@
 <script>
 	let {data} = $props();
-
-	function createClassroom() {
-	    // TODO
-	}
-
-	function deleteClassroom(cl) {
-	    // TODO
-	}
 </script>
 
 <h2>Classrooms</h2>
