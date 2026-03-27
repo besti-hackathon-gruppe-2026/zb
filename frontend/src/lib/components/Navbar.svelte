@@ -1,50 +1,76 @@
-<script>
+<script lang="ts">
+	import { LogOut } from '@lucide/svelte';
 
-	import { LogOut, Users, SquarePen, CalendarDays, House } from "@lucide/svelte";
+	import { page } from '$app/state';
 
+	const pageId = $derived(page.url.pathname.split('/')[2]);
 </script>
 
-
-
-<nav class="taskbar">
-  <ul class="taskbar-list">
-    <li><a href="home"><p>Home</p></a></li>
-    <li><p>Stundenplan</p></li>
-    <li><p>Filter</p></li>
-    <li><p>Klassenzimmer</p></li>
-  </ul>
-  <div class="logout-icon"><LogOut/></div>
-  
+<nav>
+	<div></div>
+	<ul class="navbar-elements">
+		<li>
+			<a href="/app/home" class:active={pageId === 'home'}> Home </a>
+		</li>
+		<li>
+			<a href="/app/filter" class:active={pageId === 'filter'}> Filter </a>
+		</li>
+		<li>
+			<a href="/app/classrooms" class:active={pageId === 'classrooms'}> Classrooms </a>
+		</li>
+		<li>
+			<a href="/app/agenda" class:active={pageId === 'agenda'}> Agenda </a>
+		</li>
+	</ul>
+	<div><LogOut /></div>
 </nav>
 
 <style>
+	nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 16px;
 
-.taskbar {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  border-bottom: 2px solid black;
-  padding: 1rem 2rem;
-  box-sizing: border-box;
-}
+		width: 100%;
+		border-bottom: 1px solid #ddd;
 
-.taskbar-list {
-  display: flex;
-  gap: 5rem;
-  list-style-type: none;
-  align-items: center;
-  margin: 0;
-  flex: 1;
-}
+		position: sticky;
+		top: 0;
+		background: white;
+		z-index: 10;
+	}
 
-.logout-icon {
-  margin-left: auto; 
-  flex-shrink: 0;
-}
+	a {
+		text-decoration: none;
+		color: black;
+	}
 
-.taskbar-list li:hover p, .logout-icon:hover {
-  color: grey;
-  cursor: pointer;
-}
+	a {
+		text-decoration: none;
+		color: black;
+	}
 
- </style> 
+	a:hover {
+		opacity: 0.6;
+	}
+
+	a.active {
+		font-weight: bold;
+		opacity: 1;
+	}
+
+	a.active:hover {
+		opacity: 1;
+	}
+
+	.navbar-elements {
+		display: flex;
+		justify-content: space-around;
+
+		max-width: 28rem;
+		width: 100%;
+		text-decoration: none;
+		list-style: none;
+	}
+</style>

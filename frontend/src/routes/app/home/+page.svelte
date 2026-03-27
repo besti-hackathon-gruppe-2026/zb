@@ -1,3 +1,19 @@
+<script>
+	import Dropdown from "$lib/components/Dropdown.svelte";
+
+</script>
 
 
-<p>Home</p>
+<main>
+    {#snippet trigger()}
+        <p>Dropdown</p>
+    {/snippet}
+    
+	<Dropdown {trigger}>
+        Hallo Bruda
+    </Dropdown>
+</main>
+
+<style>
+	
+</style>
