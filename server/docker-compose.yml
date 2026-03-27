@@ -37,6 +37,18 @@ services:
     ports:
       - "53:53/udp"
 
+  backend:
+    build: server-backend
+    ports:
+      - "8000:8000"
+    networks:
+      - internal
+    environment:
+      CLASSROOM_ID: 1
+      DB_HOST: mysql_db
+      DB_USER: myuser
+      DB_PASSWORD: IeP8aiji
+      DB_DATABASE: mydatabase
 
 networks:
   internal:
