@@ -26,8 +26,11 @@
 	- Templates
 		- Id
 		- Name
-		- URL Whitelist
-		- IP Whitelist
+	- Template filters
+		- Id
+		- Template id
+		- URL (nullable)
+		- IP (nullable)
 	- Teachers
 		- Id
 		- Username
