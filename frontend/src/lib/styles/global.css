@@ -66,3 +66,7 @@ button:hover {
     background-color: #ddd;
     margin: 16px 0;
 }
+
+.debug {
+    background-color: aquamarine;
+}
