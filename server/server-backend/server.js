@@ -2,6 +2,7 @@ import express from "express"
 import mysql from 'mysql2/promise';
 import {readFile} from "node:fs/promises"
 import routes from "./routes.js";
+import auth from "./auth.js";
 
 const app = express()
 const port = process.env.PORT || 8000
@@ -33,7 +34,8 @@ app.use((req, res, next) => {
 })
 /* DATABASE */
 
-    app.use("/api", routes)
+app.use("/api", routes)
+app.use("/auth", auth)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
