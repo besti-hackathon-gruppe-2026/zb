@@ -11,12 +11,12 @@ app.use(express.json())
 /* DATABASE */
 async function makeConnection(multipleStatements) {
     return await mysql.createConnection({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'myuser',
-    database: process.env.DB_DATABASE || 'mydatabase',
-    password: process.env.DB_PASSWORD,
-    multipleStatements: multipleStatements
-});
+        host: process.env.DB_HOST || 'localhost',
+        user: process.env.DB_USER || 'myuser',
+        database: process.env.DB_DATABASE || 'mydatabase',
+        password: process.env.DB_PASSWORD,
+        multipleStatements: multipleStatements
+    });
 }
 async function initializeDatabase() {
     const sql = (await readFile("db-schema.sql")).toString()
@@ -33,11 +33,7 @@ app.use((req, res, next) => {
 })
 /* DATABASE */
 
-app.use("/api", routes)
-
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+    app.use("/api", routes)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
