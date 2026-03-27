@@ -1,6 +1,6 @@
 <div class="root">
 	<div class="box">
-    <h1>Login</h1>
+    <p>Login</p>
 		<form action="/action_page.php" method="get">
 			<label> Username:</label>
 			<input type="text" name="vehicle1" value="" />
@@ -19,13 +19,17 @@
 	}
 
   .box {
-    background-color: pink;
-    padding: 15px;
-    padding-left: 35px;
-    padding-right: 35px;
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 15px;
+    padding: 100px;
     display: flex;
     gap: 12px;
     flex-direction: column;
+    p {
+      font-size: xx-large;
+    }
   }
 
   form {
@@ -34,10 +38,4 @@
     flex-direction: column;
   }
 
-  h1 {
-    font-size: xx-large;
-  }
-  label {
-    font-size: large;
-  }
 </style>
