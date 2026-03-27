@@ -1,11 +1,18 @@
 import express from "express"
 import mysql from 'mysql2/promise';
-import {readFile} from "node:fs/promises"
+import { readFile } from "node:fs/promises"
+
+import dotenv from 'dotenv';
+const { config } = dotenv;
+config()
+
 import routes from "./routes.js";
 import auth from "./auth.js";
 
 const app = express()
 const port = process.env.PORT || 8000
+
+
 
 app.use(express.json())
 
