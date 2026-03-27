@@ -16,6 +16,11 @@
 	:global(*) {
 		margin: 0;
 		padding: 0;
+
+		font-family: 'Archivo', sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 400;
+		font-style: normal;
+		font-variation-settings: 'wdth' 100;
 	}
 </style>
-
