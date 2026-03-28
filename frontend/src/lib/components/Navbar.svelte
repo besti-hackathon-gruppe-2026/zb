@@ -22,7 +22,11 @@
 			<a href="/app/agenda" class:active={pageId === 'agenda'}> Agenda </a>
 		</li>
 	</ul>
-	<div><LogOut /></div>
+	<form method="POST" action="/auth/logout">
+		<button class="logout">
+			<LogOut />
+		</button>
+	</form>
 </nav>
 
 <style>
@@ -72,5 +76,11 @@
 		width: 100%;
 		text-decoration: none;
 		list-style: none;
+	}
+
+	.logout {
+		background-color: white;
+		color: black;
+		cursor: pointer;
 	}
 </style>
