@@ -1,10 +1,29 @@
 # NetSwitch
+![logo](./img/logo.png)
 
-## Setup
+NetSwitch ist ein leichter, leistungsfähiger MITM‑Proxy, mit dem Lehrkräfte den Internetzugang ihrer Schüler während Unterricht und Prüfungen gezielt steuern können. Über serverseitige Whitelists lassen sich nur die Webseiten freigeben, die wirklich benötigt werden. So entsteht eine ruhige, konzentrierte Arbeitsumgebung ohne Ablenkungen. Flexibel einsetzbar im normalen Unterricht wie auch bei Klausuren.
 
+## Features
 
-## Usage
+## Architecture
 
+## Setup guide
+
+## Configuration
+### Docker compose
+- **MYSQL Database**
+	- MYSQL_ROOT_PASSWORD
+	- MYSQL_DATABASE
+	- MYSQL_USER
+	- MYSQL_PASSWORD
+	- port
+
+## Testing
+**mitmproxy test:**
+1. Install requirements in **server/mitmproxy-container**
+2. Setup a test database (local or deploy our container)
+3. Add **google.com** to whitelist
+4. Run **ProxyTest.py** using: **pytest -q ProxyTest.py** in **server/mitmproxy-container/test**
 
 ## How it works
 ![map](./img/map.png)
