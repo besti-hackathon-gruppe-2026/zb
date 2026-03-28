@@ -24,6 +24,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 	}
 
+	// TODO: prevent loggedin users from going to login
+
 	if (event.url.pathname.startsWith('/auth')) {
 		if (token) {
 			try {
