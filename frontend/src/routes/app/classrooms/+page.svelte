@@ -20,7 +20,7 @@
 <hr>
 <h2>Create Classroom</h2>
 <form method="POST" action="?/createClassroom">
-    <input type="text" placeholder="Classroom Name" name="classroomName"/>
+    <input type="text" placeholder="Classroom Name" name="classroomName" required/>
     <button>
         Create Classroom
     </button>
