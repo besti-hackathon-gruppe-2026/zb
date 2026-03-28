@@ -9,8 +9,10 @@ NetSwitch is a lightweight yet powerful MITM proxy that allows teachers to preci
 - [Setup guide](#setup-guide)
 - [Usage guide](#usage-guide)
 - [Configuration](#configuration)
+- [Accessing the dashboard](#accessing-the-dashboard)
 - [Testing](#testing)
 - [How it works](#how-it-works)
+- [Some images](#some-images)
 
 ## Features
 - Server‑side whitelist of Websites & IPs
