@@ -1,7 +1,12 @@
 import { redirect } from '@sveltejs/kit';
 
 export const POST = async ({ cookies }) => {
-	cookies.delete('auth', { path: '/' });
+	cookies.delete('auth', {
+		path: '/',
+		httpOnly: true,
+		secure: true,
+		sameSite: 'lax'
+	});
 
-	throw redirect(303, '/auth/login');
+	throw redirect(302, '/auth/login');
 };

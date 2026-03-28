@@ -3,7 +3,7 @@
 declare global {
 	namespace App {
 		interface Locals {
-			user?: JwtPayload; // or a more specific type if you know your token shape
+			user?: JwtPayload;
 		}
 	}
 }

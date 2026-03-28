@@ -6,9 +6,9 @@ const { sign, verify } = jwt;
 const auth = express.Router();
 export default auth;
 
-const generateToken = async (userId) => {
+const generateToken = async (userId, username) => {
     const secret = process.env.JWT_SECRET;
-    const payload = { time: Date(), userId };
+    const payload = { createdAt: Date.now(), userId, username };
     return await sign(payload, secret, { expiresIn: "1h" });
 }
 
