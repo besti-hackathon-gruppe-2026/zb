@@ -2,17 +2,23 @@
 	import Dropdown from '$lib/components/Dropdown.svelte';
 </script>
 
-<main class="debug">
+<main class="">
 	{#snippet trigger()}
 		<p>Dropdown</p>
 	{/snippet}
 
 	<!-- <Dropdown {trigger}>Hallo Bruda</Dropdown> -->
 
-	<label class="switch">
-		<input type="checkbox" />
-		<span class="slider round"></span>
-	</label>
+	<div class="logo">
+		<label class="switch">
+			<input type="checkbox" />
+			<span class="slider round"></span>
+		</label>
+		<span class="logo-label">
+			<span class="net-label">Net</span>
+			<span class="switch-label">Switch</span>
+		</span>
+	</div>
 </main>
 
 <style>
@@ -21,6 +27,35 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	.net-label {
+		color: #00377f;
+		font-weight: 600;
+	}
+	
+	.switch-label {
+		color: #61c561;
+		font-weight: 600;
+	}
+
+	.logo {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		gap: 2rem;
+	}
+
+	.logo-label {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		display: flex;
+		gap: 0;
+		font-size: 4rem;
 	}
 
 	.switch {
