@@ -30,7 +30,7 @@
 	}
 
 	.net-label {
-		color: #00377f;
+		color: #196ad4;
 		font-weight: 600;
 	}
 	
