@@ -9,18 +9,34 @@ services:
       MYSQL_USER: ${DB_USER:-myuser}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "3306:3306" # for development
+      - "3306:3306" # for development, disable when live
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
       - internal
 
-  mitmproxy:
+  mitmproxy-1:
     build: server/mitmproxy-container
     ports:
       - "${PROXY_PORT:-8080}:8080"
     environment:
       CLASSROOM_ID: ${CLASSROOM_ID:-1}
+      MYSQL_HOST: mysql_db
+      MYSQL_PORT: 3306
+      MYSQL_USER: ${DB_USER:-myuser}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: mydatabase
+    networks:
+      - internal
+    volumes:
+      - "./.mitmproxy:/root/.mitmproxy:z"
+
+  mitmproxy-2:
+    build: server/mitmproxy-container
+    ports:
+      - "${PROXY_PORT:-8080}:8080"
+    environment:
+      CLASSROOM_ID: ${CLASSROOM_ID2:-2}
       MYSQL_HOST: mysql_db
       MYSQL_PORT: 3306
       MYSQL_USER: ${DB_USER:-myuser}

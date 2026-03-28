@@ -13,12 +13,11 @@ NetSwitch is a lightweight yet powerful MITM proxy that allows teachers to preci
 - [How it works](#how-it-works)
 
 ## Features
-- Server‑side whitelist of URLs & IPs
+- Server‑side whitelist of Websites & IPs
 - Real‑time filtering using mitmproxy
 - Classroom‑based traffic separation
-- Filter schedules by class
 - Web interface for teachers (SvelteKit)
-- Blocking of all non‑whitelisted HTTP/HTTPS traffic
+- Blocking of all non‑whitelisted IP traffic (HTTP, VPNs, Games)
 
 ## Architecture
 - **Proxy: [mitmproxy](https://www.mitmproxy.org/) with our custom addon.**
@@ -27,13 +26,18 @@ NetSwitch is a lightweight yet powerful MITM proxy that allows teachers to preci
   Stores classrooms, filters and user data.
 - **CoreDns**
   Handles DNS routing inside the school network.
-- **[SvelteKit](https://svelte.dev/)**
+- **SvelteKit**
   Our frontend. Allows teachers to manage whitelist entries.
+- **Node.js**
+  To glue SvelteKit to the database.
 
 ## Setup guide
+Installation is done with docker.
 
-
-## Usage guide
+1. Get a copy of the source code
+2. Copy `.env.example` to `.env`: `cp .env.example .env`
+3. Open `.env` and configure your settings. They are described below
+3. In the root directory of the project, run `make` to start all containers
 
 ## Configuration
 `Settings for .env, examples in .env.example`
@@ -41,15 +45,15 @@ NetSwitch is a lightweight yet powerful MITM proxy that allows teachers to preci
   Password for database.
 - **DB_USER**
   User for database.
-- **CLASSROOM_ID**
+- **CLASSROOM_ID1**, **CLASSROOM_ID2**
   Which classroom filters the proxy uses.
 - **PROXY_PORT**
   Change port of our proxy.
 
 ## Testing
 **mitmproxy test:**
-1. Install requirements in `server/mitmproxy-container`
-2. Setup a test database using our schema, `server/server-backend/db-schema.sql`
+1. start the project to get the DB going
+2. Install requirements in `server/mitmproxy-container`
 3. Add `google.com` to whitelist
 4. Run `pytest -q ProxyTest.py` inside `server/mitmproxy-container/test`
 
@@ -57,7 +61,8 @@ NetSwitch is a lightweight yet powerful MITM proxy that allows teachers to preci
 ![map](./img/map.png)
 
 - Every classroom has a proxy on the server through which the clients (Laptops) are routing all traffic.
-- The proxy forwards whitelisted URLs or IPs to the router, which are fetched from the Database. All other traffic is blocked.
-- Using the WebUI teachers can whitelist URLs and IPs in the database.
-- The router wont allow any traffic except when it is coming form one of the proxies.
+
+- The proxy inspects HTTP(S) traffic and checks if the URL or IPs is whitelisted. If traffic isn't whitelisted, it 
+  is rejected by default.
+- Using the WebUI teachers can whitelist URLs and IPs.
 
