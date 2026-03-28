@@ -3,10 +3,20 @@
 
 NetSwitch is a lightweight yet powerful MITM proxy that allows teachers to precisely control students’ internet access during lessons and exams. Using server‑side whitelists, only the websites that are actually needed are made available. This creates a calm, focused working environment without distractions. NetSwitch is flexible and can be used both in everyday classroom situations and during tests.
 
+## Table of Contents
+- [Features](#features)
+- [Architecture](#architecture)
+- [Setup guide](#setup-guide)
+- [Usage guide](#usage-guide)
+- [Configuration](#configuration)
+- [Testing](#testing)
+- [How it works](#how-it-works)
+
 ## Features
 - Server‑side whitelist of URLs & IPs
 - Real‑time filtering using mitmproxy
 - Classroom‑based traffic separation
+- Filter schedules by class
 - Web interface for teachers (SvelteKit)
 - Blocking of all non‑whitelisted HTTP/HTTPS traffic
 
@@ -21,6 +31,9 @@ NetSwitch is a lightweight yet powerful MITM proxy that allows teachers to preci
   Our frontend. Allows teachers to manage whitelist entries.
 
 ## Setup guide
+
+
+## Usage guide
 
 ## Configuration
 `Settings for .env, examples in .env.example`
