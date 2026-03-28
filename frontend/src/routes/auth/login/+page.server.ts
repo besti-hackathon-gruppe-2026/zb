@@ -1,5 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import { error, fail } from '@sveltejs/kit';
+import { PUBLIC_API_URL } from '$env/static/public';
 
 import type { Actions } from './$types';
 
@@ -15,7 +16,7 @@ export const actions = {
 
 		const body = { username, password };
 
-		const req = await fetch('http://localhost:8001/auth/login', {
+		const req = await fetch(`${PUBLIC_API_URL}/auth/login`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(body)
@@ -33,7 +34,7 @@ export const actions = {
 
 		const { token } = res;
 
-		cookies.set('auth', token, { path: '/' });
+		cookies.set('auth', token, { path: '/', httpOnly: true, secure: true, sameSite: 'lax' });
 
 		return redirect(302, '/app/home');
 	}

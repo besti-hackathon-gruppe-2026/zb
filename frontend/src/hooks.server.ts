@@ -1,5 +1,7 @@
 import { redirect, type Handle } from '@sveltejs/kit';
 import jwt from 'jsonwebtoken';
+
+import { PUBLIC_API_URL } from '$env/static/public';
 import { PRIVATE_JWT_SECRET } from '$env/static/private';
 
 export const handle: Handle = async ({ event, resolve }) => {
@@ -16,7 +18,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 		try {
 			const payload = jwt.verify(token, PRIVATE_JWT_SECRET);
 			event.locals.user = payload;
-		} catch {
+		} catch (err) {
+			console.error(err)
 			return logout();
 		}
 	}
@@ -26,8 +29,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 			try {
 				jwt.verify(token, PRIVATE_JWT_SECRET);
 				throw redirect(302, '/app/home');
-			} catch {
-				event.cookies.delete('auth', { path: '/', httpOnly: true, secure: true, sameSite: 'lax' });
+			} catch (err) {
+				console.error(err)
 			}
 		}
 	}
