@@ -4,7 +4,7 @@ export const POST = async ({ cookies }) => {
 	cookies.delete('auth', {
 		path: '/',
 		httpOnly: true,
-		secure: true,
+		secure: false,
 		sameSite: 'lax'
 	});
 
