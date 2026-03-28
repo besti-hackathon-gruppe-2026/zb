@@ -38,6 +38,8 @@ Installation is done with docker.
 2. Copy `.env.example` to `.env`: `cp .env.example .env`
 3. Open `.env` and configure your settings. They are described below
 3. In the root directory of the project, run `make` to start all containers
+4. After starting the project, a TLS CA certificate for the traffic inspection by the proxy is generated in the 
+   `.mitmproxy` directory. This certificate must be installed on all client for HTTPS traffic inspection.
 
 ## Configuration
 `Settings for .env, examples in .env.example`
