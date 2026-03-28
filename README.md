@@ -50,6 +50,11 @@ Installation is done with docker.
 - **PROXY_PORT**
   Change port of our proxy.
 
+## Accessing the dashboard
+1. Connect to the server's ip on port 3000
+2. Log in to access the dashboard (unfortunately, the process to creaate credeintals for new installation isn't quite 
+   ready)
+
 ## Testing
 **mitmproxy test:**
 1. start the project to get the DB going
@@ -60,8 +65,8 @@ Installation is done with docker.
 ## How it works
 ![map](./img/map.png)
 
-- Every classroom has a proxy on the server through which the clients (Laptops) are routing all traffic.
-
+- Every classroom has a server through which the clients (Laptops) are routing all traffic.
+- This is done using HTTP proxies. We only allow traffic to the HTTP proxy and DNS, all other traffic is rejected.
 - The proxy inspects HTTP(S) traffic and checks if the URL or IPs is whitelisted. If traffic isn't whitelisted, it 
   is rejected by default.
 - Using the WebUI teachers can whitelist URLs and IPs.

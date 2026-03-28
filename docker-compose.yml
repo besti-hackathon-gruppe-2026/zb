@@ -34,7 +34,7 @@ services:
   mitmproxy-2:
     build: server/mitmproxy-container
     ports:
-      - "${PROXY_PORT:-8080}:8080"
+      - "8081:8080"
     environment:
       CLASSROOM_ID: ${CLASSROOM_ID2:-2}
       MYSQL_HOST: mysql_db
