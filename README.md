@@ -71,3 +71,7 @@ Installation is done with docker.
   is rejected by default.
 - Using the WebUI teachers can whitelist URLs and IPs.
 
+## Some Images
+![blocked](./img/blocked.png)
+![filters](./img/filters.png)
+![login](./img/login.png)
