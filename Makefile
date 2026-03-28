@@ -6,8 +6,8 @@ start-proxy:
 	docker compose up -d
 
 dev-upload:
-	rsync -r ../ hackathon@172.16.0.1:zb-hackathon
-	#rsync -r ../ hackathon@178.104.106.139:zb-hackathon
+	rsync --exclude-from=.rsyncignore -r ./ hackathon@172.16.0.1:zb-hackathon
+	#rsync --exclude-from=.rsyncignore -r ../ hackathon@178.104.106.139:zb-hackathon
 
 wifi-connect:
 	sudo nmcli radio wifi on
