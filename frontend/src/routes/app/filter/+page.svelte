@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        {#each data.items as filter}
+        {#each data.items.filters as filter}
             <tr>
                 <td>{filter["classroomId"]}</td>
                 <td>
@@ -40,10 +40,15 @@
 <hr>
 <h2>Create Filter</h2>
 <form method="POST" action="?/createFilter">
-    <input type="hidden" name="classroomId" value="14">
+    <select name="classroomId">
+        {#each data.items.classrooms as classrooms}
+            <option value={classrooms["classroomId"]}>{classrooms["classroomName"]}</option>
+        {/each}
+    </select>
+
     <input type="text" placeholder="URL" name="url"/>
     <input type="text" placeholder="IP" name="ip"/>
     <button>
-        Create Classroom
+        Create Filter
     </button>
 </form>

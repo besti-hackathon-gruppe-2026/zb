@@ -1,3 +1,12 @@
+const BACKEND = "backend:8000"
+
+/** @type {import('./$types').PageLoad} */
+export async function load({ fetch, params }) {
+	const res = await fetch(`http://${BACKEND}/api/filters`);
+	const items = await res.json();
+
+	return {items};
+}
 export const actions = {
 	createFilter: async ({request}) => {
 		const data = await request.formData();
@@ -5,7 +14,7 @@ export const actions = {
 		const url = data.get('url');
 		const ip = data.get('ip');
 
-		const res = await fetch("http://localhost:8001/api/filter/create", {
+		const res = await fetch(`http://${BACKEND}/api/filter/create`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -23,7 +32,7 @@ export const actions = {
 		const data = await request.formData();
 		const filterId = data.get('filterId');
 
-		const res = await fetch("http://localhost:8001/api/filter/delete", {
+		const res = await fetch(`http://${BACKEND}/api/filter/delete`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
