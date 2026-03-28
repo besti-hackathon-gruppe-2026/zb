@@ -2,12 +2,12 @@
 	import Dropdown from '$lib/components/Dropdown.svelte';
 </script>
 
-<main>
+<main class="debug">
 	{#snippet trigger()}
 		<p>Dropdown</p>
 	{/snippet}
 
-	<Dropdown {trigger}>Hallo Bruda</Dropdown>
+	<!-- <Dropdown {trigger}>Hallo Bruda</Dropdown> -->
 
 	<label class="switch">
 		<input type="checkbox" />
@@ -16,11 +16,18 @@
 </main>
 
 <style>
+	main {
+		height: calc(100vh - 6rem);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
 	.switch {
 		position: relative;
 		display: inline-block;
-		width: 60px;
-		height: 34px;
+		width: 240px;
+		height: 100px;
 	}
 
 	.switch input {
@@ -44,10 +51,10 @@
 	.slider:before {
 		position: absolute;
 		content: '';
-		height: 26px;
-		width: 26px;
-		left: 4px;
-		bottom: 4px;
+		height: 84px;
+		width: 84px;
+		left: 8px;
+		bottom: 8px;
 		background-color: white;
 		-webkit-transition: 0.4s;
 		transition: 0.4s;
@@ -62,13 +69,13 @@
 	}
 
 	input:checked + .slider:before {
-		-webkit-transform: translateX(26px);
-		-ms-transform: translateX(26px);
-		transform: translateX(26px);
+		-webkit-transform: translateX(140px);
+		-ms-transform: translateX(140px);
+		transform: translateX(140px);
 	}
 
 	.slider.round {
-		border-radius: 34px;
+		border-radius: 100px;
 	}
 
 	.slider.round:before {
