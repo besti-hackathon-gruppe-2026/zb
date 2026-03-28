@@ -37,6 +37,7 @@
 		padding: 16px;
 
 		width: 100%;
+		height: 4rem;
 		border-bottom: 1px solid #ddd;
 
 		position: sticky;

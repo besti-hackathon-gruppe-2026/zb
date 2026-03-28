@@ -6,7 +6,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: mydatabase
-      MYSQL_USER: myuser
+      MYSQL_USER: ${DB_USER:-myuser}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3306:3306" # for development
@@ -18,12 +18,12 @@ services:
   mitmproxy:
     build: server/mitmproxy-container
     ports:
-      - "8080:8080"
+      - "${PROXY_PORT:-8080}:8080"
     environment:
-      CLASSROOM_ID: 1
+      CLASSROOM_ID: ${CLASSROOM_ID:-1}
       MYSQL_HOST: mysql_db
       MYSQL_PORT: 3306
-      MYSQL_USER: myuser
+      MYSQL_USER: ${DB_USER:-myuser}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: mydatabase
     networks:
@@ -47,9 +47,9 @@ services:
       - internal
       - frontback
     environment:
-      CLASSROOM_ID: 1
+      CLASSROOM_ID: ${CLASSROOM_ID:-1}
       DB_HOST: mysql_db
-      DB_USER: myuser
+      DB_USER: ${DB_USER:-myuser}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_DATABASE: mydatabase
       NOCORS: true
