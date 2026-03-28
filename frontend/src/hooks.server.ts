@@ -4,11 +4,11 @@ import jwt from 'jsonwebtoken';
 import { PRIVATE_JWT_SECRET } from '$env/static/private';
 
 export const handle: Handle = async ({ event, resolve }) => {
-	if (event.url.pathname.startsWith('/app')) {
-		const token = event.cookies.get('auth');
+	const token = event.cookies.get('auth');
 
+	if (event.url.pathname.startsWith('/app')) {
 		if (!token) {
-			return redirect(302, '/login');
+			return redirect(302, '/auth/login');
 		}
 
 		try {
@@ -16,7 +16,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 			event.locals.user = payload;
 		} catch (err) {
 			event.cookies.delete('auth', { path: '/' });
-			return redirect(302, '/login');
+			return redirect(302, '/auth/login');
+		}
+	} else if (event.url.pathname.startsWith('/auth')) {
+		if (token) {
+			return redirect(302, '/app/home');
 		}
 	}
 
