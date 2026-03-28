@@ -5,6 +5,7 @@ NetSwitch is a lightweight yet powerful MITM proxy that allows teachers to preci
 
 ## Table of Contents
 - [Features](#features)
+- [Demo](#demo)
 - [Architecture](#architecture)
 - [Setup guide](#setup-guide)
 - [Usage guide](#usage-guide)
@@ -20,6 +21,11 @@ NetSwitch is a lightweight yet powerful MITM proxy that allows teachers to preci
 - Classroom‑based traffic separation
 - Web interface for teachers (SvelteKit)
 - Blocking of all non‑whitelisted IP traffic (HTTP, VPNs, Games)
+
+## Demo
+<video width="320" height="240" controls>
+  <source src="./demo.mp4" type="video/mp4">
+</video>
 
 ## Architecture
 - **Proxy: [mitmproxy](https://www.mitmproxy.org/) with our custom addon.**
