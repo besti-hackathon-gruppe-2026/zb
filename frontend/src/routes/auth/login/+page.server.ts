@@ -33,7 +33,7 @@ export const actions = {
 
 		const { token } = res;
 
-		cookies.set('auth', token, { path: '/login' });
+		cookies.set('auth', token, { path: '/' });
 
 		return redirect(302, '/app/home');
 	}
