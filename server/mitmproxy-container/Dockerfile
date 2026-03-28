@@ -4,7 +4,8 @@ WORKDIR /app
 
 RUN pip install mysql-connector-python
 
-COPY ../mitmproxy.py mitmproxy.py
+COPY mitmproxy.py mitmproxy.py
+COPY error-message.html error-message.html
 
 EXPOSE 8080
 CMD mitmdump -s mitmproxy.py --listen-port=8080 --set console_eventlog_verbosity=debug --set block_global=false

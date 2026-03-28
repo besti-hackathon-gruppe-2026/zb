@@ -15,6 +15,9 @@ config = {
     "database": os.getenv("MYSQL_DATABASE", "blocker"),
 }
 
+with open("error-message.html", "r") as f:
+    error_message_template = f.read()
+
 
 class BlockerAddon:
     def __init__(self):
@@ -73,7 +76,7 @@ class BlockerAddon:
                     return
 
         flow.response = http.Response.make(403,
-                                           "<p>Access forbidden!</p>",
+                                           error_message_template,
                                            {"Content-Type": "text/html"})
 
 

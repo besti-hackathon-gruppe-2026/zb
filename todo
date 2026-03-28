@@ -1,6 +1,14 @@
+- big red error page
+- backend: temporarily allow url if in response
+- documentation+code cleanup
+- input validation
+
+
+
 - make everything work cleanly with cors
 - frontend-backend error handling
 - frontend input validation in forms
 - documentation
 - a way to run unit tests
 - verify backend
+- backend: temporarily allow url

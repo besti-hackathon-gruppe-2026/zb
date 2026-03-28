@@ -41,7 +41,11 @@ test-delete-filter:
 	  --data '{"filterId":1}' \
 	  http://localhost:8001/api/filter/delete
 
-
+test-register:
+	curl --header "Content-Type: application/json" \
+	  --request POST \
+	  --data '{"username":"foo","password":"a","confirmPassword":"a"}' \
+	  http://localhost:8000/auth/register
 
 test-server:
 	curl http://localhost:8001/
