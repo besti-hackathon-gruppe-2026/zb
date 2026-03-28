@@ -1,8 +1,6 @@
 <script lang="ts">
 	import type { PageProps } from './$types';
 	import { page } from '$app/state';
-
-	let { data, form }: PageProps = $props();
 </script>
 
 <main class="page">
