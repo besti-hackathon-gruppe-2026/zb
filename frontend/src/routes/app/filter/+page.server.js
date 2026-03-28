@@ -2,7 +2,7 @@ import { PUBLIC_API_URL } from '$env/static/public';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch, params }) {
-	const res = await fetch(`http://${PUBLIC_API_URL}/api/filters`);
+	const res = await fetch(`${PUBLIC_API_URL}/api/filters`);
 	const items = await res.json();
 
 	return {items};
@@ -14,7 +14,7 @@ export const actions = {
 		const url = data.get('url');
 		const ip = data.get('ip');
 
-		const res = await fetch(`http://${PUBLIC_API_URL}/api/filter/create`, {
+		const res = await fetch(`${PUBLIC_API_URL}/api/filter/create`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const actions = {
 		const data = await request.formData();
 		const filterId = data.get('filterId');
 
-		const res = await fetch(`http://${PUBLIC_API_URL}/api/filter/delete`, {
+		const res = await fetch(`${PUBLIC_API_URL}/api/filter/delete`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
