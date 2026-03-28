@@ -26,6 +26,7 @@ NetSwitch is a lightweight yet powerful MITM proxy that allows teachers to preci
 <video width="320" height="240" controls>
   <source src="./demo.mp4" type="video/mp4">
 </video>
+[video link](demo.mp4)
 
 ## Architecture
 - **Proxy: [mitmproxy](https://www.mitmproxy.org/) with our custom addon.**
