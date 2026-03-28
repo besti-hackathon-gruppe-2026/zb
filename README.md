@@ -9,8 +9,10 @@ NetSwitch is a lightweight yet powerful MITM proxy that allows teachers to preci
 - [Setup guide](#setup-guide)
 - [Usage guide](#usage-guide)
 - [Configuration](#configuration)
+- [Accessing the dashboard](#accessing-the-dashboard)
 - [Testing](#testing)
 - [How it works](#how-it-works)
+- [Some images](#some-images)
 
 ## Features
 - Server‑side whitelist of Websites & IPs
@@ -38,6 +40,8 @@ Installation is done with docker.
 2. Copy `.env.example` to `.env`: `cp .env.example .env`
 3. Open `.env` and configure your settings. They are described below
 3. In the root directory of the project, run `make` to start all containers
+4. After starting the project, a TLS CA certificate for the traffic inspection by the proxy is generated in the 
+   `.mitmproxy` directory. This certificate must be installed on all client for HTTPS traffic inspection.
 
 ## Configuration
 `Settings for .env, examples in .env.example`
@@ -50,6 +54,11 @@ Installation is done with docker.
 - **PROXY_PORT**
   Change port of our proxy.
 
+## Accessing the dashboard
+1. Connect to the server's ip on port 3000
+2. Log in to access the dashboard (unfortunately, the process to creaate credeintals for new installation isn't quite 
+   ready)
+
 ## Testing
 **mitmproxy test:**
 1. start the project to get the DB going
@@ -60,9 +69,22 @@ Installation is done with docker.
 ## How it works
 ![map](./img/map.png)
 
-- Every classroom has a proxy on the server through which the clients (Laptops) are routing all traffic.
-
+- Every classroom has a server through which the clients (Laptops) are routing all traffic.
+- This is done using HTTP proxies. We only allow traffic to the HTTP proxy and DNS, all other traffic is rejected.
 - The proxy inspects HTTP(S) traffic and checks if the URL or IPs is whitelisted. If traffic isn't whitelisted, it 
   is rejected by default.
 - Using the WebUI teachers can whitelist URLs and IPs.
 
+## Some Images
+![blocked](./img/blocked.png)
+![filters](./img/filters.png)
+![login](./img/login.png)
+
+
+### Known issues
+- CORS is largely disabled. We ran out of time to improve the setup in a way that allows us to run with CORS. This 
+  should be done before production use.
+- The dashboard performs almost no input validation, or if it does, you don't get useful error messages.
+- The dashboard has a bunch of usability issues.
+- Our architecture uses two backend servers for the frontend: A Sveltekit server and a node server. They could be 
+  merged.
