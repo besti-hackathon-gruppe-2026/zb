@@ -15,7 +15,7 @@
     <tbody>
         {#each data.items as filter}
             <tr>
-                <td>{filter["classroomId"]}</td>
+                <td>{data.classrooms.filter(e=>e["classroomId"]==filter["classroomId"])[0]["classroomName"] }</td>
                 <td>
                     {filter["url"]}
                 </td>
@@ -40,7 +40,12 @@
 <hr>
 <h2>Create Filter</h2>
 <form method="POST" action="?/createFilter">
-    <input type="hidden" name="classroomId" value="14">
+    <select name="classroomId">
+        {#each data.classrooms as classroom}
+            <option value={classroom["classroomId"]}>{classroom["classroomName"]}</option>
+        {/each}
+    </select>
+
     <input type="text" placeholder="URL" name="url"/>
     <input type="text" placeholder="IP" name="ip"/>
     <button>

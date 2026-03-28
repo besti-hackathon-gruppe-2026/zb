@@ -43,15 +43,25 @@ services:
       - "8000:8000"
     networks:
       - internal
+      - frontback
     environment:
       CLASSROOM_ID: 1
       DB_HOST: mysql_db
       DB_USER: myuser
       DB_PASSWORD: ${DB_PASSWORD}
       DB_DATABASE: mydatabase
+      NOCORS: true
+
+  frontend:
+    build: frontend
+    networks:
+      - frontback
+    ports:
+      - "3000:3000"
 
 networks:
   internal:
+  frontback:
 
 volumes:
   mysql_data:
