@@ -12,13 +12,6 @@ const generateToken = async (userId, username) => {
     return await sign(payload, secret, { expiresIn: "1h" });
 }
 
-const validateToken = async (token) => {
-    const secret = process.env.JWT_SECRET;
-    const result = await verify(token, secret);
-
-    console.log(result)
-}
-
 auth.post("/login", async (req, res) => {
     try {
         const { username, password } = req.body;
