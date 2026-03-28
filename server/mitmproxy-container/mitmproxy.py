@@ -15,13 +15,14 @@ config = {
     "database": os.getenv("MYSQL_DATABASE", "blocker"),
 }
 
-class BlockerAddon :
-    def __init__(self) :
+
+class BlockerAddon:
+    def __init__(self):
         self.ip_cache = {}
         self.whitelist_urls = []
         self.whitelist_ips = []
 
-    async def refresh_whitelist(self) :
+    async def refresh_whitelist(self):
         while True:
             await asyncio.sleep(5)
             async with await cpy_async.connect(**config) as cnx:
@@ -32,41 +33,47 @@ class BlockerAddon :
                     whitelist_urls_tmp = []
                     whitelist_ips_tmp = []
 
-                    for url, ip in rows :
-                        if url is not None :
+                    for url, ip in rows:
+                        if url is not None:
                             whitelist_urls_tmp.append(url)
-                        if ip is not None :
+                        if ip is not None:
                             whitelist_ips_tmp.append(ip)
 
                     self.whitelist_urls = whitelist_urls_tmp
                     self.whitelist_ips = whitelist_ips_tmp
 
-    def resolve_ip(self, host) :
-        if host in self.ip_cache :
+    async def clear_cache(self):
+        while True:
+            await asyncio.sleep(1800)  # 30min
+            self.ip_cache.clear()
+
+    def resolve_ip(self, host):
+        if host in self.ip_cache:
             return self.ip_cache[host]
 
         ip = gethostbyname(host)
         self.ip_cache[host] = ip
         return ip
 
-
-    def load(self, loader: addonmanager.Loader) :
+    def load(self, loader: addonmanager.Loader):
         self.refresh_whitelist()
-        asyncio.get_event_loop().create_task(self.refresh_whitelist())
+        asyncio.create_task(self.refresh_whitelist())
+        asyncio.create_task(self.clear_cache())
 
     def request(self, flow: http.HTTPFlow):
-        if self.whitelist_urls :
+        if self.whitelist_urls:
             for url in self.whitelist_urls:
-                if url in flow.request.pretty_url :
+                if url in flow.request.pretty_url:
                     return
 
-        if self.whitelist_ips :
+        if self.whitelist_ips:
             for ip in self.whitelist_ips:
-                if ip == self.resolve_ip(urlparse(flow.request.pretty_url).netloc) :
+                if ip == self.resolve_ip(urlparse(flow.request.pretty_url).netloc):
                     return
 
         flow.response = http.Response.make(403,
-                                               "<p>Access forbidden!</p>",
-                                               {"Content-Type": "text/html"})
+                                           "<p>Access forbidden!</p>",
+                                           {"Content-Type": "text/html"})
+
 
 addons = [BlockerAddon()]
