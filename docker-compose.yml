@@ -28,6 +28,8 @@ services:
       MYSQL_DATABASE: mydatabase
     networks:
       - internal
+    volumes:
+      - "./.mitmproxy:/root/.mitmproxy:z"
 
   dns:
     image: coredns/coredns
