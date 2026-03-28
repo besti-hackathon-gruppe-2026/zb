@@ -21,6 +21,9 @@ app.use(cors({
 }))
 
 /* DATABASE */
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
 async function makeConnection(multipleStatements) {
     return await mysql.createConnection({
         host: process.env.DB_HOST || 'localhost',
@@ -37,6 +40,7 @@ async function initializeDatabase() {
     await connection.query(sql)
     console.log("DB schema created")
 }
+await delay(4000) // give the DB time
 await initializeDatabase()
 const connection = await makeConnection(false)
 app.use((req, res, next) => {
