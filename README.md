@@ -77,3 +77,12 @@ Installation is done with docker.
 ![blocked](./img/blocked.png)
 ![filters](./img/filters.png)
 ![login](./img/login.png)
+
+
+### Known issues
+- CORS is largely disabled. We ran out of time to improve the setup in a way that allows us to run with CORS. This 
+  should be done before production use.
+- The dashboard performs almost no input validation, or if it does, you don't get useful error messages.
+- The dashboard has a bunch of usability issues.
+- Our architecture uses two backend servers for the frontend: A Sveltekit server and a node server. They could be 
+  merged.
