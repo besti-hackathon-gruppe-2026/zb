@@ -2,14 +2,21 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const { sign } = jwt;
+const { sign, verify } = jwt;
 const auth = express.Router();
 export default auth;
 
 const generateToken = async (userId) => {
     const secret = process.env.JWT_SECRET;
     const payload = { time: Date(), userId };
-    return sign(payload, secret, { expiresIn: "1h" });
+    return await sign(payload, secret, { expiresIn: "1h" });
+}
+
+const validateToken = async (token) => {
+    const secret = process.env.JWT_SECRET;
+    const result = await verify(token, secret);
+
+    console.log(result)
 }
 
 auth.post("/login", async (req, res) => {
