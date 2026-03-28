@@ -7,8 +7,6 @@ import { PRIVATE_JWT_SECRET } from '$env/static/private';
 export const handle: Handle = async ({ event, resolve }) => {
 	const token = event.cookies.get('auth', { path: '/', httpOnly: true, secure: false, sameSite: 'lax' });
 
-	console.log(token)
-
 	const logout = () => {
 		event.cookies.delete('auth', { path: '/', httpOnly: true, secure: false, sameSite: 'lax' });
 		throw redirect(302, '/auth/login');

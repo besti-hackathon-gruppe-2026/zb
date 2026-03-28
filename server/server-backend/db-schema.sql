@@ -24,5 +24,3 @@ CREATE TABLE IF NOT EXISTS user_classrooms (
     FOREIGN KEY (classroom_id) REFERENCES classrooms(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
-
-DELETE FROM user;

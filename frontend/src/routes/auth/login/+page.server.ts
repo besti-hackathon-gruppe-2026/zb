@@ -14,8 +14,6 @@ export const actions = {
 			return fail(400, { message: 'Username and password are required.' });
 		}
 
-		console.log("cookies3")
-
 		const body = { username, password };
 
 		const req = await fetch(`${PUBLIC_API_URL}/auth/login`, {
@@ -28,11 +26,6 @@ export const actions = {
 			return fail(req.status, { message: 'Username or password incorrect.' });
 		}
 
-		console.log("couldn't fetch")
-
-
-		console.log("cookies2")
-
 		const res = await req.json();
 
 		if (res.status !== 200) {
@@ -40,8 +33,6 @@ export const actions = {
 		}
 
 		const { token } = res;
-
-		console.log("cookies", token)
 
 		cookies.set('auth', token, { path: '/', httpOnly: true, secure: false, sameSite: 'lax' });
 
