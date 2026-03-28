@@ -1,4 +1,4 @@
-from mitmproxy import http, addonmanager
+from mitmproxy import http, addonmanager, ctx
 from urllib.parse import urlparse
 from socket import gethostbyname
 import mysql.connector.aio as cpy_async
@@ -9,7 +9,7 @@ classroom = os.getenv('CLASSROOM_ID', "1")
 
 config = {
     "host": os.getenv("MYSQL_HOST", "127.0.0.1"),
-    "port": os.getenv("MYSQL_PORT", 3306),
+    "port": int(os.getenv("MYSQL_PORT", 3306)),
     "user": os.getenv("MYSQL_USER", "root"),
     "password": os.getenv("MYSQL_PASSWORD", ""),
     "database": os.getenv("MYSQL_DATABASE", "blocker"),
@@ -27,7 +27,7 @@ class BlockerAddon:
             await asyncio.sleep(5)
             async with await cpy_async.connect(**config) as cnx:
                 async with await cnx.cursor() as cur:
-                    await cur.execute("SELECT url, ip FROM filters WHERE classroom_id = {};".format(classroom))
+                    await cur.execute("SELECT url, ip FROM filter WHERE classroom_id = {};".format(classroom))
                     rows = await cur.fetchall()
 
                     whitelist_urls_tmp = []
@@ -41,6 +41,7 @@ class BlockerAddon:
 
                     self.whitelist_urls = whitelist_urls_tmp
                     self.whitelist_ips = whitelist_ips_tmp
+            ctx.log.info(""+str(self.whitelist_urls)+str(self.whitelist_ips))
 
     async def clear_cache(self):
         while True:

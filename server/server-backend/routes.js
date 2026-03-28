@@ -137,9 +137,13 @@ router.post("/filter/create", async (req, res) => {
 })
 
 router.get("/filters", async (req, res) => {
-    const [rows, fields] = await req.db.execute("SELECT * FROM filter")
+    const [filterRows, _] = await req.db.execute("SELECT * FROM filter")
+     const [classroomRows, __] = await req.db.execute("SELECT * FROM classrooms")
 
-    await res.json(rows.map(e=>{return {filterId: e.id, classroomId: e.classroom_id, url:e.url, ip:e.ip}}))
+    await res.json({
+        filters: filterRows.map(e=>{return {filterId: e.id, classroomId: e.classroom_id, url:e.url, ip:e.ip}}),
+        classrooms: classroomRows.map(e=>{return {classroomId: e.id, classroomName: e.name}})
+    })
 })
 
 router.post("/filter/update", async (req, res) => {

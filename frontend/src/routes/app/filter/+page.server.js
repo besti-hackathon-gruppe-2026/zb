@@ -5,10 +5,7 @@ export async function load({ fetch, params }) {
 	const res = await fetch(`http://${BACKEND}/api/filters`);
 	const items = await res.json();
 
-	const clRes = await fetch(`http://${BACKEND}/api/classrooms`);
-	const classrooms = await clRes.json();
-
-	return {items, classrooms};
+	return {items};
 }
 export const actions = {
 	createFilter: async ({request}) => {
