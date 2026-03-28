@@ -72,6 +72,11 @@ Installation is done with docker.
 3. Add `google.com` to whitelist
 4. Run `pytest -q ProxyTest.py` inside `server/mitmproxy-container/test`
 
+**backend tests (very limited)**
+1. start the project to get the DB and backend going
+2. `cd server/server-backend`
+3. `make`
+
 ## How it works
 ![map](./img/map.png)
 
